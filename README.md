@@ -20,7 +20,7 @@ git pull
 npm install
 ```
 
-4.(For Backend) the command for starting the server is as follows
+4.(For Backend) go to the backend folder and the command for starting the server is as follows
 
 ```
 npm start
