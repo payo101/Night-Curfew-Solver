@@ -5,8 +5,6 @@ const app = express();
 app.use(express.json());//Allows use to use json objects
 const dotenv = require('dotenv');
 
-const {check, validationResult} = require('express-validator');
-
 //Body Parser
 const bodyParser = require('body-parser');
 app.use(bodyParser.urlencoded({extended: false}));
