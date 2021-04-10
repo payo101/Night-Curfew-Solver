@@ -7,10 +7,39 @@ const displayProducts = (req , res) => {
     });
 }
 
+//Store-Owner Rights
 const createProduct = (req , res) => {
-    res.json({
-        message: "successfuly created and stored a product"
+    const _Product = new Product({
+        name: req.body.name,
+        imgURL: req.body.imgURL,
+        description: req.body.description
+    });
+
+    _Product.save((err , Product) => {
+        if(err){
+            res.status(400).json({error});
+        }
+        if(Product){
+            res.send(Product);
+        }
     });
 }
 
-module.exports = {displayProducts , createProduct};
+const findProductByID = (req , res) => {
+    id = req.params.productid;
+    if(id)
+    {
+        Product.findById(id).exec((err , product) => {
+            if(err)
+            {
+                res.status(400).json({err});
+            }
+            if(product)
+            {
+                res.send(product);
+            }
+        });
+    }
+}
+
+module.exports = {displayProducts , createProduct , findProductByID};

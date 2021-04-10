@@ -17,8 +17,12 @@ const productSchema = new Schema({
     } ,
     countInStock: {
         type: Number
+    } ,
+    created_by: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "StoreID"
     }
-});
+} , {timestamps: true} );
 
 const Product = mongoose.model('Product' , productSchema);
 module.exports = Product;

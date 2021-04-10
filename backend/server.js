@@ -16,7 +16,7 @@ app.use(express.json());//Allows use to use json objects
 
 const PORT = process.env.PORT;
 
-app.use('/' , store_Route);
+app.use('/' , store_Route);//everything related to products
 
 app.listen(PORT , () => {
     console.log(`Server is Running on PORT ${PORT}`);
