@@ -1,18 +1,29 @@
 const Product = require('../model/product');
+const path = require('path');
 
 //Middlewares
-const displayProducts = (req , res) => {
-    res.json({
-        message: "you are viewing all the products"
-    });
+
+//display all products
+const displayProducts = async (req , res) => {
+    try {
+        const allProducts = await Product.find({});
+        res.send(allProducts);
+    } catch (err) {
+        res.status(400).json({err});
+    }
+    // const root = path.join(__dirname , '../../');
+    // res.sendFile(path.join(root , 'frontend/html/signup.html'));
 }
 
-//Store-Owner Rights
+//Store-Owner Rights to create new products
 const createProduct = (req , res) => {
+    const{name , imgURL , description , price , countInStock} = req.body;
     const _Product = new Product({
-        name: req.body.name,
-        imgURL: req.body.imgURL,
-        description: req.body.description
+        name: name,
+        imgURL: imgURL,
+        description: description,
+        price: price,
+        countInStock: countInStock
     });
 
     _Product.save((err , Product) => {
@@ -25,6 +36,7 @@ const createProduct = (req , res) => {
     });
 }
 
+//used for finding the full details of the product
 const findProductByID = (req , res) => {
     id = req.params.productid;
     if(id)
